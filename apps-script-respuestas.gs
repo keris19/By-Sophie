@@ -9,7 +9,8 @@ function doPost(e){
    const book=SpreadsheetApp.openById('1Y0npOOGAvP7ASjmJjlPIqg4SakSMyTex-JDGouhQu_0');
    const tab=p.tipo==='cuantitativo'?'Cuantitativo':'Cualitativo';
    const sheet=book.getSheetByName(tab)||book.insertSheet(tab);
-   const keys=Object.keys(p.respuestas).filter(k=>/^[a-z0-9_]+$/.test(k)).slice(0,60);
+   if(p.tipo==='cualitativo') p.respuestas=Object.fromEntries(Object.entries(p.respuestas).map(([k,v])=>['Pregunta '+k,v]));
+   const keys=Object.keys(p.respuestas).filter(k=>/^[a-zA-Z0-9_ ]+$/.test(k)).slice(0,60);
    if(sheet.getLastRow()===0)sheet.appendRow(['Fecha de registro',...keys]);
    const headers=sheet.getRange(1,1,1,sheet.getLastColumn()).getValues()[0];
    const newKeys=keys.filter(k=>!headers.includes(k));
