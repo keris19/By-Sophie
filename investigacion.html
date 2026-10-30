@@ -20,7 +20,6 @@ try{
  if(!res.ok||result.success===false||result.success==='false')throw new Error('No confirmado');
  status.textContent='Respuesta recibida. ¡Gracias por participar!';
  e.currentTarget.reset();
-}catch(err){status.textContent='No pudimos confirmar el envío. Inténtalo nuevamente.'}
-finally{btn.disabled=false}});
+}catch(err){status.textContent='No pudimos confirmar el envío. Inténtalo nuevamente.'}finally{btn.disabled=false}});
 render();
 </script></body></html>
