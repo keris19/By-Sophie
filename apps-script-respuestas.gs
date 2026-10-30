@@ -6,7 +6,7 @@ function doPost(e){
   if(!p || p.website || !['cuantitativo','cualitativo'].includes(p.tipo) || !p.respuestas || typeof p.respuestas!=='object') throw Error('invalid');
   const lock=LockService.getScriptLock();lock.waitLock(10000);
   try{
-   const book=SpreadsheetApp.getActiveSpreadsheet();
+   const book=SpreadsheetApp.openById('1Y0npOOGAvP7ASjmJjlPIqg4SakSMyTex-JDGouhQu_0');
    const tab=p.tipo==='cuantitativo'?'Cuantitativo':'Cualitativo';
    const sheet=book.getSheetByName(tab)||book.insertSheet(tab);
    const keys=Object.keys(p.respuestas).filter(k=>/^[a-z0-9_]+$/.test(k)).slice(0,60);
